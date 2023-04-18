@@ -73,3 +73,83 @@ $(document).ready(function() {
         window.location.href = 'results.html';
     });
 });
+
+//swap login & sign-up forms
+$(document).ready(function() {
+    $('#signup-link').click(function() {
+        $('#login-form').addClass('d-none');
+        $('#signup-form').removeClass('d-none');
+        $('#form-msg').text('');
+        return false;
+    });
+
+    $('#login-link').click(function() {
+        $('#signup-form').addClass('d-none');
+        $('#login-form').removeClass('d-none');
+        $('#form-msg').text('');
+        return false;
+    });
+});
+
+//client-side validation for sign-up
+$(document).ready(function() {
+    $("#signup-form").submit(function (event) {
+        event.preventDefault();
+
+        var name = $("input[name='name']").val();
+        var signupUsername = $("input[name='signup-username']").val();
+        var signupPassword = $("input[name='signup-password']").val();
+
+        var formErr = false;
+
+        if (name === ''){
+            $("#nameErr").text("Name is required")
+            formErr = true;
+        } else{
+            $("#nameErr").text("");
+        }
+
+        if (signupUsername === ''){
+            $("#usernameErr").text("Username is required")
+            formErr = true;
+        } else if (!/^[a-zA-Z0-9_-]{3,16}$/i.test(signupUsername)) {
+            $("#usernameErr").text("Username must be between 3 and 16 characters long, and may only contain letters, numbers, underscores, and hyphens.");
+            formErr = true;
+        } else{
+            $("#usernameErr").text("");
+        }
+
+        if (signupPassword === ''){
+            $("#passwordErr").text("Password is required")
+            formErr = true;
+        } else if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/i.test(signupPassword)) {
+            $("#passwordErr").text("Password must contain at least 8 characters, including at least one letter and one number.");
+            formErr = true;
+        } else{
+            $("#passwordErr").text("");
+        }
+
+        if (formErr) {
+            $('#form-msg').addClass('text-danger').text('Please fill out all required fields.');
+        } else {
+            $.ajax({
+                type: 'POST',
+                url: 'login.php',
+                data: $('#signup-form').serialize(),
+                
+                success: function() {
+                        $('#form-msg').removeClass('text-danger').addClass('text-success').text('You are now signed-up. Login to see your survey results');
+                        $('form')[0].reset();
+                        $("form").find("button[type='submit']").prop("disabled", true);
+                        $("form").find("button[type='submit']").text("Signed up");
+                    // } else {
+                    //     $('#form-msg').addClass('text-danger').text('There seems to have been an error. Please try again later.');
+                    // }
+                },
+                error: function() {
+                    $('#form-msg').addClass('text-danger').text('There seems to have been an error. Please try again later.');
+                }
+            });
+        }
+    });
+});
