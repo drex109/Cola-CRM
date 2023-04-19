@@ -70,7 +70,7 @@ $(document).ready(function() {
 
         localStorage.setItem('surveyValues', JSON.stringify(answers));
 
-        window.location.href = 'results.html';
+        window.location.href = 'login.php';
     });
 });
 
@@ -110,23 +110,23 @@ $(document).ready(function() {
         }
 
         if (signupUsername === ''){
-            $("#usernameErr").text("Username is required")
+            $("#signupUsernameErr").text("Username is required")
             formErr = true;
         } else if (!/^[a-zA-Z0-9_-]{3,16}$/i.test(signupUsername)) {
-            $("#usernameErr").text("Username must be between 3 and 16 characters long, and may only contain letters, numbers, underscores, and hyphens.");
+            $("#signupUsernameErr").text("Username must be between 3 and 16 characters long, and may only contain letters, numbers, underscores, and hyphens.");
             formErr = true;
         } else{
-            $("#usernameErr").text("");
+            $("#signupUsernameErr").text("");
         }
 
         if (signupPassword === ''){
-            $("#passwordErr").text("Password is required")
+            $("#signupPasswordErr").text("Password is required")
             formErr = true;
         } else if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/i.test(signupPassword)) {
-            $("#passwordErr").text("Password must contain at least 8 characters, including at least one letter and one number.");
+            $("#signupPasswordErr").text("Password must contain at least 8 characters, including at least one letter and one number.");
             formErr = true;
         } else{
-            $("#passwordErr").text("");
+            $("#signupPasswordErr").text("");
         }
 
         if (formErr) {
@@ -140,14 +140,61 @@ $(document).ready(function() {
                 success: function() {
                         $('#form-msg').removeClass('text-danger').addClass('text-success').text('You are now signed-up. Login to see your survey results');
                         $('form')[0].reset();
-                        $("form").find("button[type='submit']").prop("disabled", true);
-                        $("form").find("button[type='submit']").text("Signed up");
-                    // } else {
-                    //     $('#form-msg').addClass('text-danger').text('There seems to have been an error. Please try again later.');
-                    // }
+                        $("form").find("button[name='signup']").prop("disabled", true);
+                        $("form").find("button[name='signup']").text("Signed up");
                 },
                 error: function() {
                     $('#form-msg').addClass('text-danger').text('There seems to have been an error. Please try again later.');
+                }
+            });
+        }
+    });
+});
+//client-side validation for login
+$(document).ready(function() {
+    $("#login-form").submit(function (event) {
+        event.preventDefault();
+        
+        var loginUsername = $("input[name='login-username']").val();
+        var loginPassword = $("input[name='login-password']").val();
+
+        var formErr = false;
+
+        if (loginUsername === ''){
+            $("#loginUsernameErr").text("*Please enter a valid username")
+            formErr = true;
+        } else{
+            $("#loginUsernameErr").text("");
+        }
+
+        if (loginPassword === ''){
+            $("#loginPasswordErr").text("*Please enter a valid password")
+            formErr = true;
+        } else{
+            $("#loginPasswordErr").text("");
+        }
+
+        if (formErr) {
+            $('#form-msg').addClass('text-danger').text('Please enter a valid username and password');
+        } else {
+            $.ajax({
+                type: 'POST',
+                url: 'login.php',
+                data: $('#login-form').serialize(),
+                
+                success: function() {
+                        $('#form-msg').removeClass('text-danger').addClass('text-success').text('You are now logged in. Redirecting to your survey results...');
+                        $('form')[0].reset();
+                        setTimeout(function() {
+                            window.location.replace("results.php");
+                        }, 2000);
+                },
+                error: function(xhr, error) {
+                    if (xhr.status === 401) {
+                        $('#form-msg').addClass('text-danger').text('Invalid username or password.');
+                    } else {
+                        $('#form-msg').addClass('text-danger').text('An error occurred: ' + error);
+                    }
                 }
             });
         }

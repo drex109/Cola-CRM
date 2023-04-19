@@ -1,43 +1,3 @@
-<?php
-//server side validation for login
-    // session_start(); // start session
-
-    // if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
-    //     // get the form input values
-    //     $loginUsername = cleanInput($_POST["login-username"]);
-    //     $loginPassword = cleanInput($_POST["login-password"]);
-
-    //     // connect to the database
-    //     $servername = "localhost";
-    //     $serverUsername = "drexon";
-    //     $serverPassword = "5y(Ctj2NxUlC7t09";
-    //     $dbname = "cola(crm)";
-
-    //     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $serverUsername, $serverPassword);
-    //     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    //     // prepare and execute the SQL statement
-    //     $stmt = $conn->prepare("SELECT id, name FROM users WHERE username = :username AND password = :password");
-    //     $stmt->bindParam(':username', $loginUsername);
-    //     $stmt->bindParam(':password', $loginPassword);
-    //     $stmt->execute();
-
-    //     // check if the user exists
-    //     if ($stmt->rowCount() == 1) {
-    //         $row = $stmt->fetch();
-    //         $_SESSION["user_id"] = $row["id"]; // save user ID in session
-    //         $_SESSION["user_name"] = $row["name"]; // save user name in session
-    //         header("Location: results.php"); // redirect to dashboard
-    //         exit();
-    //     } else {
-    //         $error = "Invalid username or password";
-    //         echo json_encode(array('error' => $error));
-    //         exit();
-    //     }
-    // }
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,15 +13,17 @@
     <div class="container-fluid max-mobile bg-black rounded text-white p-5">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <form id="login-form" class="form">
+                <form id="login-form" class="form" action=<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?> method="POST">
                 <h2>Login</h2>
-                <div class="form-group mb-3" action=<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?> method="POST">
+                <div class="form-group mb-3">
                     <label for="login-username">Username:</label>
-                    <input type="text" class="form-control" id="login-username" name="login-username" required>
+                    <span class="text-danger"><span id="loginUsernameErr"></span></span>
+                    <input type="text" class="form-control" id="login-username" name="login-username">
                 </div>
                 <div class="form-group mb-3">
                     <label for="login-password">Password:</label>
-                    <input type="password" class="form-control" id="login-password" name="login-password" required>
+                    <span class="text-danger"><span id="loginPasswordErr"></span></span>
+                    <input type="password" class="form-control" id="login-password" name="login-password">
                 </div>
                 <button type="submit" name="login" class="btn btn-light">Login</button>
                 <p>Don't have an account? <a href="#" id="signup-link">Sign up</a></p>
@@ -76,18 +38,18 @@
                 </div>
                 <div class="form-group mb-3">
                     <label for="signup-username">Username:</label>
-                    <span class="text-danger">*<span id="usernameErr"></span></span>
+                    <span class="text-danger">*<span id="signupUsernameErr"></span></span>
                     <input type="text" class="form-control" id="signup-username" name="signup-username">
                 </div>
                 <div class="form-group mb-3">
                     <label for="signup-password">Password:</label>
-                    <span class="text-danger">*<span id="passwordErr"></span></span>
+                    <span class="text-danger">*<span id="signupPasswordErr"></span></span>
                     <input type="password" class="form-control" id="signup-password" name="signup-password">
                 </div>
                 <button type="submit" name="signup" value="signup" class="btn btn-light">Sign Up</button>
                 <p>Already have an account? <a href="#" id="login-link">Login</a></p>
                 </form>
-                <div id="form-msg" class="text-center fw-bold mt-5"></div>
+                <div id="form-msg" class="text-center fw-bold mt-5"></div></div>
             </div>
         </div>
     </div>
@@ -123,7 +85,7 @@
     }
 
     
-    if (($_SERVER["REQUEST_METHOD"] == "POST") && ($formErr == false)) {
+    if (($_SERVER["REQUEST_METHOD"] == "POST") && ($formErr == false) && isset($_POST['signup-username']) && isset($_POST['signup-password'])) {
         $servername = "localhost";
         $serverUsername = "drexon";
         $serverPassword = "5y(Ctj2NxUlC7t09";
@@ -138,7 +100,7 @@
         $stmt->execute();
     
         if ($stmt->rowCount() > 0) {
-            $error = "username taken";
+            $signupError = "username taken";
             echo json_encode(array('error' => $error));
             exit();
         } else {
@@ -152,7 +114,36 @@
             $stmt->execute();
         }
     }
-
+    // server side validation for account login
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login-username']) && isset($_POST['login-password'])) {
+        $loginUsername = cleanInput($_POST["login-username"]);
+        $loginPassword = cleanInput($_POST["login-password"]);
+        
+        $servername = "localhost";
+        $serverUsername = "drexon";
+        $serverPassword = "5y(Ctj2NxUlC7t09";
+        $dbname = "cola(crm)";
+    
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $serverUsername, $serverPassword);
+    
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+        $stmt = $conn->prepare("SELECT * FROM users WHERE username = :username AND password = :password");
+        $stmt->bindParam(':username', $loginUsername);
+        $stmt->bindParam(':password', $loginPassword);
+        $stmt->execute();
+        
+        if ($stmt->rowCount() > 0) {
+            // login successful
+            session_start();
+            $_SESSION["username"] = $loginUsername;
+        } else {
+            // login failed
+            header("HTTP/1.1 401 Unauthorized");
+            exit();
+        }
+    }
+    
     ?>
 
     <script src="script.js"></script>
