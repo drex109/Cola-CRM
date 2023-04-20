@@ -10,7 +10,9 @@
     <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
 </head>
 <body class="d-flex justify-content-center align-items-center">
-    <div class="container-fluid max-mobile bg-black rounded text-white p-5">
+    <div class="container-fluid max-mobile bg-black bg-opacity-75 rounded text-white p-5">
+        <h1 class="text-center p-5">Please login or sign-up to view your survey results</h1>
+        <hr>
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <form id="login-form" class="form" action=<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?> method="POST">
@@ -134,11 +136,9 @@
         $stmt->execute();
         
         if ($stmt->rowCount() > 0) {
-            // login successful
             session_start();
             $_SESSION["username"] = $loginUsername;
         } else {
-            // login failed
             header("HTTP/1.1 401 Unauthorized");
             exit();
         }

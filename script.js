@@ -73,6 +73,52 @@ $(document).ready(function() {
         window.location.href = 'login.php';
     });
 });
+$(document).ready(function() {
+    var surveyValues = JSON.parse(localStorage.getItem('surveyValues'));
+    console.log(surveyValues)
+    let pepsi = 0;
+    let coke = 0;
+    surveyValues['sweetness'] === 'sweeter' ? pepsi++ : coke++;
+    surveyValues['carbonation'] === 'less carbonation' ? pepsi++ : coke++;
+    surveyValues['taste'] === 'milder taste' ? pepsi++ : coke++;
+    surveyValues['packaging'] === 'bottles' ? pepsi++ : coke++;
+    surveyValues['calories'] === 'very important' ? pepsi++ : coke++;
+    surveyValues['mixed'] === 'mixed' ? pepsi++ : coke++;
+    surveyValues['acidity'] === 'less acidic' ? pepsi++ : coke++;
+    surveyValues['texture'] === 'smooth' ? pepsi++ : coke++;
+    surveyValues['flavor'] === 'citrusy' ? pepsi++ : coke++;
+    surveyValues['aftertaste'] === 'milder aftertaste' ? pepsi++ : coke++;
+
+    console.log(coke)
+    console.log(pepsi)
+
+    if (coke > pepsi) {
+        $('#results').text('Coke')
+    } else { 
+        $('#results').text('Pepsi')
+    }
+
+
+
+    const config = {
+        type: 'pie',
+        data: {
+            labels: [
+                'Coke',
+                'Pepsi',
+            ],
+            datasets: [{
+                data: [coke*10, pepsi*10],
+                backgroundColor: [
+                    '#F40009',
+                    '#005BBB',
+                ],
+                hoverOffset: 4
+            }]
+        }
+    };
+    new Chart($('#results-pie'), config);
+});
 
 //swap login & sign-up forms
 $(document).ready(function() {
