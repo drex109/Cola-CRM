@@ -56,6 +56,8 @@
         </div>
     </div>
 
+    <img src="Images/pepsi rain.jpg" alt="pepsi rain">
+
     <?php
     // server side validation for account creation
     $name = $signupUsername = $signupPassword = "";

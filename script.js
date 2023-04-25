@@ -70,12 +70,12 @@ $(document).ready(function() {
 
         localStorage.setItem('surveyValues', JSON.stringify(answers));
 
-        window.location.href = 'login.php';
+        window.location.replace('results.php');
     });
 });
 $(document).ready(function() {
     var surveyValues = JSON.parse(localStorage.getItem('surveyValues'));
-    console.log(surveyValues)
+    
     let pepsi = 0;
     let coke = 0;
     surveyValues['sweetness'] === 'sweeter' ? pepsi++ : coke++;
@@ -88,9 +88,6 @@ $(document).ready(function() {
     surveyValues['texture'] === 'smooth' ? pepsi++ : coke++;
     surveyValues['flavor'] === 'citrusy' ? pepsi++ : coke++;
     surveyValues['aftertaste'] === 'milder aftertaste' ? pepsi++ : coke++;
-
-    console.log(coke)
-    console.log(pepsi)
 
     if (coke > pepsi) {
         $('#results').text('Coke')
