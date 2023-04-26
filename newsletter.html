@@ -21,15 +21,18 @@
                 <form id="newsletter-form" class="form">
                 <div class="form-group mb-3">
                     <label for="newsletter-name">Full Name:</label>
-                    <!-- <span class="text-danger"><span id="loginUsernameErr"></span></span> -->
+                    <span class="text-danger"><span id="newsNameErr"></span></span>
                     <input type="text" class="form-control" id="newsletter-name" name="newsletter-name">
                 </div>
                 <div class="form-group mb-3">
                     <label for="email">Email:</label>
-                    <!-- <span class="text-danger"><span id="loginPasswordErr"></span></span> -->
+                    <span class="text-danger"><span id="emailErr"></span></span>
                     <input type="email" class="form-control" id="email" name="email">
                 </div>
+                <button type="submit" class="btn btn-light">Submit</button>
                 </form>
+                <div id="news-msg" class="text-center fw-bold mt-5"></div>
+                </div>
             </div>
         </div>
     </div>

@@ -193,6 +193,7 @@ $(document).ready(function() {
         }
     });
 });
+
 //client-side validation for login
 $(document).ready(function() {
     $("#login-form").submit(function (event) {
@@ -240,6 +241,39 @@ $(document).ready(function() {
                     }
                 }
             });
+        }
+    });
+});
+
+//client-side validation for newsletter
+$(document).ready(function() {
+    $("#newsletter-form").submit(function (event) {
+        event.preventDefault();
+
+        var newsName = $("input[name='newsletter-name']").val();
+        var email = $("input[name='newsletter-name']").val();
+
+        var formErr = false;
+
+        if (newsName === '') {
+            $('#newsNameErr').addClass('text-danger').text('*Full name is required');
+            formErr = true;
+        } else {
+            $('#newsNameErr').text('');
+        }
+
+        if (email === '') {
+            $('#emailErr').addClass('text-danger').text('*Email is required');
+            formErr = true;
+        } else {
+            $('#emailErr').text('');
+        }
+
+        if (formErr) {
+            $('#news-msg').addClass('text-danger').text('Please fill out all required fields');
+        } else {
+            $('#news-msg').removeClass('text-danger').addClass('text-success').text('Thank you for signing up!');
+            $('form')[0].reset();
         }
     });
 });
