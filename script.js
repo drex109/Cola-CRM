@@ -70,7 +70,7 @@ $(document).ready(function() {
 
         localStorage.setItem('surveyValues', JSON.stringify(answers));
 
-        window.location.replace('results.php');
+        window.location.replace('login.html');
     });
 });
 $(document).ready(function() {
@@ -175,21 +175,10 @@ $(document).ready(function() {
         if (formErr) {
             $('#form-msg').addClass('text-danger').text('Please fill out all required fields.');
         } else {
-            $.ajax({
-                type: 'POST',
-                url: 'login.php',
-                data: $('#signup-form').serialize(),
-                
-                success: function() {
-                        $('#form-msg').removeClass('text-danger').addClass('text-success').text('You are now signed-up. Login to see your survey results');
-                        $('form')[0].reset();
-                        $("form").find("button[name='signup']").prop("disabled", true);
-                        $("form").find("button[name='signup']").text("Signed up");
-                },
-                error: function() {
-                    $('#form-msg').addClass('text-danger').text('There seems to have been an error. Please try again later.');
-                }
-            });
+            $('#form-msg').removeClass('text-danger').addClass('text-success').text('You are now signed-up. Login to see your survey results');
+            $('form')[0].reset();
+            $("form").find("button[name='signup']").prop("disabled", true);
+            $("form").find("button[name='signup']").text("Signed up");
         }
     });
 });
@@ -221,26 +210,11 @@ $(document).ready(function() {
         if (formErr) {
             $('#form-msg').addClass('text-danger').text('Please enter a valid username and password');
         } else {
-            $.ajax({
-                type: 'POST',
-                url: 'login.php',
-                data: $('#login-form').serialize(),
-                
-                success: function() {
-                        $('#form-msg').removeClass('text-danger').addClass('text-success').text('You are now logged in. Redirecting to your survey results...');
-                        $('form')[0].reset();
-                        setTimeout(function() {
-                            window.location.replace("results.php");
-                        }, 2000);
-                },
-                error: function(xhr, error) {
-                    if (xhr.status === 401) {
-                        $('#form-msg').addClass('text-danger').text('Invalid username or password.');
-                    } else {
-                        $('#form-msg').addClass('text-danger').text('An error occurred: ' + error);
-                    }
-                }
-            });
+                $('#form-msg').removeClass('text-danger').addClass('text-success').text('You are now logged in. Redirecting to your survey results...');
+                $('form')[0].reset();
+                setTimeout(function() {
+                    window.location.replace("results.html");
+                }, 2000);
         }
     });
 });

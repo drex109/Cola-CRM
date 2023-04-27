@@ -15,7 +15,7 @@
         <hr>
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <form id="login-form" class="form" action=<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?> method="POST">
+                <form id="login-form" class="form" method="POST">
                 <h2>Login</h2>
                 <div class="form-group mb-3">
                     <label for="login-username">Username:</label>
@@ -31,7 +31,7 @@
                 <p>Don't have an account? <a href="#" id="signup-link">Sign up</a></p>
                 </form>
 
-                <form id="signup-form" class="form d-none" action=<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?> method="POST">
+                <form id="signup-form" class="form d-none" method="POST">
                 <h2>Sign Up</h2>
                 <div class="form-group mb-3">
                     <label for="name">Name:</label>
@@ -57,96 +57,6 @@
     </div>
 
     <img src="Images/pepsi rain.jpg" alt="pepsi rain">
-
-    <?php
-    // server side validation for account creation
-    $name = $signupUsername = $signupPassword = "";
-    $formErr = false;
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if (empty($_POST["name"])) {
-            $formErr = true;
-        } else {
-            $name = cleanInput($_POST["name"]);
-        }
-
-        if (empty($_POST["signup-username"])) {
-            $formErr = true;
-        } else {
-            $signupUsername = cleanInput($_POST["signup-username"]);
-        }
-
-        if (empty($_POST["signup-password"])) {
-            $formErr = true;
-        } else {
-            $signupPassword = cleanInput($_POST["signup-password"]);
-        }
-    }
-    function cleanInput($data) {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
-    }
-
-    
-    if (($_SERVER["REQUEST_METHOD"] == "POST") && ($formErr == false) && isset($_POST['signup-username']) && isset($_POST['signup-password'])) {
-        $servername = "localhost";
-        $serverUsername = "drexon";
-        $serverPassword = "5y(Ctj2NxUlC7t09";
-        $dbname = "cola(crm)";
-
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $serverUsername, $serverPassword);
-
-        $conn -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        $stmt = $conn->prepare("SELECT username FROM users WHERE username = :username");
-        $stmt->bindParam(':username', $signupUsername);
-        $stmt->execute();
-    
-        if ($stmt->rowCount() > 0) {
-            $signupError = "username taken";
-            echo json_encode(array('error' => $error));
-            exit();
-        } else {
-
-            $stmt = $conn -> prepare("INSERT INTO users (name, username, password) VALUES (:name, :username, :password)");
-
-            $stmt->bindParam(':name', $name);
-            $stmt->bindParam(':username', $signupUsername);
-            $stmt->bindParam(':password', $signupPassword);
-
-            $stmt->execute();
-        }
-    }
-    // server side validation for account login
-    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login-username']) && isset($_POST['login-password'])) {
-        $loginUsername = cleanInput($_POST["login-username"]);
-        $loginPassword = cleanInput($_POST["login-password"]);
-        
-        $servername = "localhost";
-        $serverUsername = "drexon";
-        $serverPassword = "5y(Ctj2NxUlC7t09";
-        $dbname = "cola(crm)";
-    
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $serverUsername, $serverPassword);
-    
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
-        $stmt = $conn->prepare("SELECT * FROM users WHERE username = :username AND password = :password");
-        $stmt->bindParam(':username', $loginUsername);
-        $stmt->bindParam(':password', $loginPassword);
-        $stmt->execute();
-        
-        if ($stmt->rowCount() > 0) {
-            session_start();
-            $_SESSION["username"] = $loginUsername;
-        } else {
-            header("HTTP/1.1 401 Unauthorized");
-            exit();
-        }
-    }
-    
-    ?>
 
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>

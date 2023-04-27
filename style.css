@@ -27,7 +27,7 @@ video {
 #surveyImg{
     position: fixed;
     width: 100%;
-    height: 140%;
+    height: 200%;
     z-index: -1;
     object-fit: cover;
 }
