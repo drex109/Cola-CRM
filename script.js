@@ -73,50 +73,52 @@ $(document).ready(function() {
         window.location.replace('results.php');
     });
 });
-$(document).ready(function() {
-    var surveyValues = JSON.parse(localStorage.getItem('surveyValues'));
-    
-    let pepsi = 0;
-    let coke = 0;
-    surveyValues['sweetness'] === 'sweeter' ? pepsi++ : coke++;
-    surveyValues['carbonation'] === 'less carbonation' ? pepsi++ : coke++;
-    surveyValues['taste'] === 'milder taste' ? pepsi++ : coke++;
-    surveyValues['packaging'] === 'bottles' ? pepsi++ : coke++;
-    surveyValues['calories'] === 'very important' ? pepsi++ : coke++;
-    surveyValues['mixed'] === 'mixed' ? pepsi++ : coke++;
-    surveyValues['acidity'] === 'less acidic' ? pepsi++ : coke++;
-    surveyValues['texture'] === 'smooth' ? pepsi++ : coke++;
-    surveyValues['flavor'] === 'citrusy' ? pepsi++ : coke++;
-    surveyValues['aftertaste'] === 'milder aftertaste' ? pepsi++ : coke++;
 
-    if (coke > pepsi) {
-        $('#results').text('Coke')
-    } else { 
-        $('#results').text('Pepsi')
-    }
+if(window.location.href.indexOf("results.php") !== -1) {
+    $(document).ready(function() {
+        var surveyValues = JSON.parse(localStorage.getItem('surveyValues'));
+        
+        let pepsi = 0;
+        let coke = 0;
+        surveyValues['sweetness'] === 'sweeter' ? pepsi++ : coke++;
+        surveyValues['carbonation'] === 'less carbonation' ? pepsi++ : coke++;
+        surveyValues['taste'] === 'milder taste' ? pepsi++ : coke++;
+        surveyValues['packaging'] === 'bottles' ? pepsi++ : coke++;
+        surveyValues['calories'] === 'not important' ? pepsi++ : coke++;
+        surveyValues['mixed'] === 'mixed' ? pepsi++ : coke++;
+        surveyValues['acidity'] === 'less acidic' ? pepsi++ : coke++;
+        surveyValues['texture'] === 'smooth' ? pepsi++ : coke++;
+        surveyValues['flavor'] === 'citrusy' ? pepsi++ : coke++;
+        surveyValues['aftertaste'] === 'milder aftertaste' ? pepsi++ : coke++;
 
-
-
-    const config = {
-        type: 'pie',
-        data: {
-            labels: [
-                'Coke',
-                'Pepsi',
-            ],
-            datasets: [{
-                data: [coke*10, pepsi*10],
-                backgroundColor: [
-                    '#F40009',
-                    '#005BBB',
-                ],
-                hoverOffset: 4
-            }]
+        if (coke > pepsi) {
+            $('#results').text('Coke')
+        } else { 
+            $('#results').text('Pepsi')
         }
-    };
-    new Chart($('#results-pie'), config);
-});
 
+
+
+        const config = {
+            type: 'pie',
+            data: {
+                labels: [
+                    'Coke',
+                    'Pepsi',
+                ],
+                datasets: [{
+                    data: [coke*10, pepsi*10],
+                    backgroundColor: [
+                        '#F40009',
+                        '#005BBB',
+                    ],
+                    hoverOffset: 4
+                }]
+            }
+        };
+        new Chart($('#results-pie'), config);
+    });
+}
 //swap login & sign-up forms
 $(document).ready(function() {
     $('#signup-link').click(function() {

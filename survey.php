@@ -63,12 +63,12 @@
             <h4>Question 5</h4>
             <p>How important is the calorie content of your cola to you?</p>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="calories" id="very-import" value="very important">
-                <label class="form-check-label" for="very-import">Very important</label> <!--pepsi-->
+                <input class="form-check-input" type="radio" name="calories" id="very-import" value="important">
+                <label class="form-check-label" for="very-import">Important</label> <!--coke-->
             </div>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="calories" id="not-import" value="not important">
-                <label class="form-check-label" for="not-import">Not important</label> <!--coke-->
+                <label class="form-check-label" for="not-import">Not important</label> <!--pepsi-->
             </div>
         </div>
         <div class="question container-fluid mb-4">
