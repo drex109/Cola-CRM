@@ -22,6 +22,10 @@
                 <input class="form-check-input" type="radio" name="sweetness" id="less-sweet" value="less sweet">
                 <label class="form-check-label" for="less-sweet">Less sweet</label> <!--coke-->
             </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="sweetness" id="no-sweet-pref" value="no preference">
+                <label class="form-check-label" for="no-sweet-pref">No preference</label> <!--neutral-->
+            </div>
         </div>
         <div class="question container-fluid mb-4">
             <h4>Question 2</h4>
@@ -33,6 +37,10 @@
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="carbonation" id="less-carb" value="less carbonation">
                 <label class="form-check-label" for="less-carb">Less carbonation</label> <!--pepsi -->
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="carbonation" id="no-carb-pref" value="no preference">
+                <label class="form-check-label" for="no-carb-pref">No preference</label> <!--neutral-->
             </div>
         </div>
         <div class="question container-fluid mb-4">
@@ -46,6 +54,10 @@
                 <input class="form-check-input" type="radio" name="taste" id="mild-taste" value="milder taste">
                 <label class="form-check-label" for="mild-taste">Milder taste</label> <!--pepsi -->
             </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="taste" id="no-taste-pref" value="no preference">
+                <label class="form-check-label" for="no-taste-pref">No preference</label> <!--neutral-->
+            </div>
         </div>
         <div class="question container-fluid mb-4">
             <h4>Question 4</h4>
@@ -57,6 +69,10 @@
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="packaging" id="bottles" value="bottles">
                 <label class="form-check-label" for="bottles">Bottles</label> <!--pepsi-->
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="packaging" id="no-pack-pref" value="no preference">
+                <label class="form-check-label" for="no-pack-pref">No preference</label> <!--neutral-->
             </div>
         </div>
         <div class="question container-fluid mb-4">
@@ -70,6 +86,10 @@
                 <input class="form-check-input" type="radio" name="calories" id="not-import" value="not important">
                 <label class="form-check-label" for="not-import">Not important</label> <!--pepsi-->
             </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="calories" id="no-cal-pref" value="no preference">
+                <label class="form-check-label" for="no-cal-pref">No preference</label> <!--neutral-->
+            </div>
         </div>
         <div class="question container-fluid mb-4">
             <h4>Question 6</h4>
@@ -81,6 +101,10 @@
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="mixed" id="mixed" value="mixed">
                 <label class="form-check-label" for="mixed">Mixed</label> <!--pepsi-->
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="mixed" id="no-mix-pref" value="no preference">
+                <label class="form-check-label" for="no-mix-pref">No preference</label> <!--neutral-->
             </div>
         </div>
         <div class="question container-fluid mb-4">
@@ -94,6 +118,10 @@
                 <input class="form-check-input" type="radio" name="acidity" id="less-acidic" value="less acidic">
                 <label class="form-check-label" for="less-acidic">Less acidic</label> <!--pepsi-->
             </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="acidity" id="no-acid-pref" value="no preference">
+                <label class="form-check-label" for="no-acid-pref">No preference</label> <!--neutral-->
+            </div>
         </div>
         <div class="question container-fluid mb-4">
             <h4>Question 8</h4>
@@ -105,6 +133,10 @@
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="texture" id="rough" value="rough">
                 <label class="form-check-label" for="rough">Rough</label> <!--coke-->
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="texture" id="no-text-pref" value="no preference">
+                <label class="form-check-label" for="no-text-pref">No preference</label> <!--neutral-->
             </div>
         </div>
         <div class="question container-fluid mb-4">
@@ -118,6 +150,10 @@
                 <input class="form-check-input" type="radio" name="flavor" id="caramel" value="caramel-like">
                 <label class="form-check-label" for="caramel">Caramel-like</label> <!--coke-->
             </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="flavor" id="no-flav-pref" value="no preference">
+                <label class="form-check-label" for="no-flav-pref">No preference</label> <!--neutral-->
+            </div>
         </div>
         <div class="question container-fluid mb-4">
             <h4>Question 10</h4>
@@ -129,6 +165,10 @@
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="aftertaste" id="mild-aftertaste" value="milder aftertaste">
                 <label class="form-check-label" for="mild-aftertaste">Milder aftertaste</label> <!--pepsi-->
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="aftertaste" id="no-aftertaste-pref" value="no preference">
+                <label class="form-check-label" for="no-aftertaste-pref">No preference</label> <!--neutral-->
             </div>
         </div>
         <div class="progress">

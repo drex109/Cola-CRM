@@ -80,22 +80,29 @@ if(window.location.href.indexOf("results.php") !== -1) {
         
         let pepsi = 0;
         let coke = 0;
-        surveyValues['sweetness'] === 'sweeter' ? pepsi++ : coke++;
-        surveyValues['carbonation'] === 'less carbonation' ? pepsi++ : coke++;
-        surveyValues['taste'] === 'milder taste' ? pepsi++ : coke++;
-        surveyValues['packaging'] === 'bottles' ? pepsi++ : coke++;
-        surveyValues['calories'] === 'not important' ? pepsi++ : coke++;
-        surveyValues['mixed'] === 'mixed' ? pepsi++ : coke++;
-        surveyValues['acidity'] === 'less acidic' ? pepsi++ : coke++;
-        surveyValues['texture'] === 'smooth' ? pepsi++ : coke++;
-        surveyValues['flavor'] === 'citrusy' ? pepsi++ : coke++;
-        surveyValues['aftertaste'] === 'milder aftertaste' ? pepsi++ : coke++;
+        let neutral = 0;
+        surveyValues['sweetness'] === 'sweeter' ? pepsi++ : surveyValues['sweetness'] === 'no preference' ? neutral++ : coke++;
+        surveyValues['carbonation'] === 'less carbonation' ? pepsi++ : surveyValues['carbonation'] === 'no preference' ? neutral++ : coke++;
+        surveyValues['taste'] === 'milder taste' ? pepsi++ : surveyValues['taste'] === 'no preference' ? neutral++ : coke++;
+        surveyValues['packaging'] === 'bottles' ? pepsi++ : surveyValues['packaging'] === 'no preference' ? neutral++ : coke++;
+        surveyValues['calories'] === 'not important' ? pepsi++ : surveyValues['calories'] === 'no preference' ? neutral++ : coke++;
+        surveyValues['mixed'] === 'mixed' ? pepsi++ : surveyValues['mixed'] === 'no preference' ? neutral++ : coke++;
+        surveyValues['acidity'] === 'less acidic' ? pepsi++ : surveyValues['acidity'] === 'no preference' ? neutral++ : coke++;
+        surveyValues['texture'] === 'smooth' ? pepsi++ : surveyValues['texture'] === 'no preference' ? neutral++ : coke++;
+        surveyValues['flavor'] === 'citrusy' ? pepsi++ : surveyValues['flavor'] === 'no preference' ? neutral++ : coke++;
+        surveyValues['aftertaste'] === 'milder aftertaste' ? pepsi++ : surveyValues['aftertaste'] === 'no preference' ? neutral++ : coke++;
 
-        if (coke > pepsi) {
+        console.log(neutral)
+        console.log(coke)
+        console.log(pepsi)
+
+        if ((coke > pepsi) && (coke > neutral)) {
             $('#results').text('Coke')
-        } else { 
+        } else if ((pepsi > coke) && (pepsi > neutral)) { 
             $('#results').text('Pepsi')
-        }
+        } else (
+            $('#results').text('neither Coke or Pepsi')
+        )
 
 
 
@@ -105,12 +112,14 @@ if(window.location.href.indexOf("results.php") !== -1) {
                 labels: [
                     'Coke',
                     'Pepsi',
+                    'Neutral'
                 ],
                 datasets: [{
-                    data: [coke*10, pepsi*10],
+                    data: [coke, pepsi, neutral],
                     backgroundColor: [
                         '#F40009',
                         '#005BBB',
+                        '#808080'
                     ],
                     hoverOffset: 4
                 }]
