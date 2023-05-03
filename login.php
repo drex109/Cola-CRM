@@ -9,15 +9,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
 </head>
-<body class="d-flex justify-content-center align-items-center">
+<body class="d-flex justify-content-center align-items-center login">
     <div class="container-fluid max-mobile bg-black bg-opacity-75 rounded text-white p-5">
-        <h1 class="text-center p-5">Please login or sign-up to view your survey results</h1>
+        <h1 class="text-center">Please login or sign-up to view your survey results</h1>
         <hr>
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <form id="login-form" class="form" action=<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?> method="POST">
                 <h2>Login</h2>
-                <div class="form-group mb-3">
+                <div class="form-group">
                     <label for="login-username">Username:</label>
                     <span class="text-danger"><span id="loginUsernameErr"></span></span>
                     <input type="text" class="form-control" id="login-username" name="login-username">
@@ -33,12 +33,12 @@
 
                 <form id="signup-form" class="form d-none" action=<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?> method="POST">
                 <h2>Sign Up</h2>
-                <div class="form-group mb-3">
+                <div class="form-group">
                     <label for="name">Name:</label>
                     <span class="text-danger">*<span id="nameErr"></span></span>
                     <input type="text" class="form-control" id="name" name="name">
                 </div>
-                <div class="form-group mb-3">
+                <div class="form-group">
                     <label for="signup-username">Username:</label>
                     <span class="text-danger">*<span id="signupUsernameErr"></span></span>
                     <input type="text" class="form-control" id="signup-username" name="signup-username">
@@ -55,8 +55,6 @@
             </div>
         </div>
     </div>
-
-    <img src="Images/pepsi rain.jpg" alt="pepsi rain">
 
     <?php
     // server side validation for account creation

@@ -9,7 +9,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
 </head>
-<body class="d-flex justify-content-center align-items-center">
+<body class="d-flex justify-content-center align-items-center survey">
     <form id="questions" class="container-fluid max-mobile mx-auto bg-black bg-opacity-75 rounded text-white m-5 p-5">
         <div class="question container-fluid mb-4">
             <h4>Question 1</h4>
@@ -178,8 +178,6 @@
         <button class="results-btn btn btn-light mt-5" type="submit">See Results</button>
         
     </form>
-
-    <img id="surveyImg" src="Images/snowy machines.jpg" alt="snowy machines">
 
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
