@@ -26,6 +26,7 @@ $(document).ready(function() {
     const questionsTotal = $('.question').length;
     let questionsAnswered = 0;
     const progressBar = $('.progress-bar');
+    update()
 
     $('input[type=radio]').change(function() {
         const radioInput = $(this)
@@ -33,10 +34,14 @@ $(document).ready(function() {
         if (radioInput.is(':checked') && !question.hasClass('answered')) {
             question.addClass('answered');
             questionsAnswered++;
-            const progress = (questionsAnswered / questionsTotal) * 100;
-            progressBar.css('width', progress + '%');
+            update();
         }
     });
+
+    function update() {
+        const progress = (questionsAnswered / questionsTotal) * 100;
+        progressBar.css('width', progress + '%');
+    }
 });
 
 //store survey answers in local storage

@@ -49,3 +49,20 @@ img{
     background-position: center;
     background-size: cover;
 }
+
+.progress-bar {
+    background-color: #c8102e;
+    animation: cokeToPepsi 7s linear infinite alternate;
+}
+
+@keyframes cokeToPepsi {
+    0% {
+        background-color: #c8102e;
+    }
+    50% {
+        background-color: #0057b8;
+    }
+    100% {
+        background-color: #c8102e;
+    }
+}
