@@ -18,7 +18,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
 <body class="results">
-    <nav class="navbar navbar-dark navbar-expand-lg position-absolute w-100 bg-black bg-opacity-75">
+    <nav class="navbar navbar-dark navbar-expand-lg bg-black bg-opacity-75">
         <div class="container-fluid">
             <a class="navbar-brand" href="welcome.html">
                 <img src="Images/beverage.png" alt="logo">
@@ -29,9 +29,20 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-link" href="survey.php">Survey</a>
-                    <a class="nav-link" href="login.php">Login/Sign-Up</a>
                     <a class="nav-link active" aria-current="results" href="results.php">Results</a>
-                    <a class="nav-link" href="newsletter.html">Newsletter</a>
+                    <a class="nav-link" href="newsletter.php">Newsletter</a>
+                </div>
+                <div class="ms-auto mt-5 mt-lg-0 text-white">
+                    <?php
+                        if (!isset($_SESSION["username"])) {
+                            echo "<a class='text-decoration-none' href='login.php'>Login/Signup";
+                        } else {
+                            echo "Signed in as: " . $_SESSION["username"];
+                            echo "<br>";
+                            echo "<a href='logout.php'>Logout</a>";
+                        }
+                    ?>
+                    </a>
                 </div>
             </div>
         </div>
@@ -43,7 +54,7 @@
             <div id="pie" class="m-4 mx-auto">
                 <canvas id="results-pie"></canvas>
             </div>
-            <p class="m-0">Thank you for participating in this survey! Please <a href="newsletter.html">join our Newsletter</a></p>  
+            <p class="m-0">Thank you for participating in this survey! Please <a href="newsletter.php">join our Newsletter</a></p>  
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.2.1/dist/chart.umd.min.js"></script>

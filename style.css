@@ -20,6 +20,10 @@ video {
     object-fit: cover;
 }
 
+a.navbar-brand img {
+    width: 2em;
+}
+
 .survey{
     background-image: url("Images/snowy machines.jpg");
     background-repeat: no-repeat;

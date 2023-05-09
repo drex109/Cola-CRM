@@ -10,7 +10,7 @@
     <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
 </head>
 <body class="newsletter">
-    <nav class="navbar navbar-dark navbar-expand-lg position-absolute w-100 bg-black bg-opacity-75">
+    <nav class="navbar navbar-dark navbar-expand-lg bg-black bg-opacity-75">
         <div class="container-fluid">
             <a class="navbar-brand" href="welcome.html">
                 <img src="Images/beverage.png" alt="logo">
@@ -21,9 +21,21 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
                     <a class="nav-link" href="survey.php">Survey</a>
-                    <a class="nav-link" href="login.php">Login/Sign-Up</a>
                     <a class="nav-link" href="results.php">Results</a>
-                    <a class="nav-link active" aria-current="newsletter" href="newsletter.html">Newsletter</a>
+                    <a class="nav-link active" aria-current="newsletter" href="newsletter.php">Newsletter</a>
+                </div>
+                <div class="ms-auto mt-5 mt-lg-0 text-white">
+                    <?php 
+                        session_start();
+                        if (!isset($_SESSION["username"])) {
+                            echo "<a class='text-decoration-none' href='login.php'>Login/Signup";
+                        } else {
+                            echo "Signed in as: " . $_SESSION["username"];
+                            echo "<br>";
+                            echo "<a href='logout.php'>Logout</a>";
+                        }
+                    ?>
+                    </a>
                 </div>
             </div>
         </div>
