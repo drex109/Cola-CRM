@@ -11,7 +11,7 @@
 </head>
 <body class="survey">
     <nav class="navbar navbar-dark navbar-expand-lg bg-black bg-opacity-75">
-        <div class="container-fluid">
+        <div class="container-fluid menu-width">
             <a class="navbar-brand" href="welcome.html">
                 <img src="Images/beverage.png" alt="logo">
             </a>
@@ -193,13 +193,19 @@
                 </div>
             </div>
             <div class="progress">
-                <div class="progress-bar" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar bg-success" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
             
             <button class="results-btn btn btn-dark mt-5" type="submit">See Results</button>
 
         </form>
     </div>
+
+    <footer>
+        <div class="footer menu-width text-center">
+            <p>&copy Survey Corps</p>
+        </div>
+    </footer>
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 </body>
