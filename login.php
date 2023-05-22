@@ -131,7 +131,7 @@
     </nav>
     <div class="content-wrapper d-flex justify-content-center align-items-center">
         <div class="container-fluid max-mobile bg-black bg-opacity-75 rounded text-white p-5">
-            <h1 class="text-center">Please login or sign-up to view your survey results</h1>
+            <h1 class="text-center">Please login or sign up to view your survey results</h1>
             <hr>
             <div class="row justify-content-center">
                 <div class="col-md-6">

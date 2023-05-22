@@ -59,7 +59,7 @@
     </div>
 
     <footer>
-        <div class="footer menu-width text-center">
+        <div class="footer menu-width text-center text-white">
             <p>&copy Survey Corps</p>
         </div>
     </footer>
